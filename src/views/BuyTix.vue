@@ -1,91 +1,180 @@
 <template>
-  <a-form>
-    <!-- ticket pic -->
-    <a-card hoverable>
-      <img
-        alt="Zoobic Safari"
-        src="https://www.zoomanity.com.ph/wp-content/uploads/2016/11/01INSIDEBANNER_PARKS-e1503026907330.jpg"
-        slot="cover"
-      />
-      <a-card-meta title></a-card-meta>
+  <a-card title="Zoobic Safari" :bodyStyle="{ 'text-align': 'left'}">
+    <img
+      alt="Zoobic Safari"
+      src="https://www.zoomanity.com.ph/wp-content/uploads/2016/11/01INSIDEBANNER_PARKS-e1503026907330.jpg"
+      slot="cover"
+    />
 
-      <!-- picker -->
-      <a-form-item
-        :label-col="labelCol"
-        :wrapper-col="wrapperCol"
-        style="margin-bottom:0;"
-        label="Date of Visit"
-      >
-        <a-form-item help="Select a date to begin">
-          <a-date-picker style="width: 100%" />
-        </a-form-item>
-      </a-form-item>
+    <p>
+      <b>Date of Visit</b>
+      <span style="color: red">*</span>
+      <a-date-picker v-model="details.date_visit" style="margin-left: 25px;" />
+    </p>
 
-      <div>
-        <a-input-number
-          :min="1"
-          :max="10"
-          v-model="value1"
-          @change="onChange"
-          label="Adult Ticket"
-        />
-        Adult Ticket：{{value1}}
-      </div>
+    <a-card title="Tickets" style="margin-bottom: 10px">
+      <p>
+        <span>
+          <b>Adult Rate : PHP 486.5</b>
+        </span>
+        <br />
+        <span>
+          <b>Child Rate : PHP 416.5</b>
+        </span>
+        <br />
+      </p>
+      <a-row>
+        <a-col :span="8">
+          <span>Zoobic Safari Adult</span>
+        </a-col>
+        <a-col :span="8">
+          <span>
+            <a-input-number v-model="details.ticket.adult_qty"></a-input-number>
+          </span>
+        </a-col>
+        <a-col :span="8">
+          <span>PHP {{total_adult}}</span>
+        </a-col>
+        <a-col :span="24">
+          <a-divider style="margin: 10px 0"></a-divider>
+        </a-col>
+        <a-col :span="8">
+          <span>Zoobic Safari Child</span>
+        </a-col>
+        <a-col :span="8">
+          <span>
+            <a-input-number v-model="details.ticket.child_qty"></a-input-number>
+          </span>
+        </a-col>
+        <a-col :span="8">
+          <span>PHP {{total_child}}</span>
+        </a-col>
+      </a-row>
       <br />
-      <div>
-        <a-input-number :min="1" :max="10" v-model="value2" @change="onChange" />
-        Kids Ticket：{{value2}}
-      </div>
-      <div>
-        <span>Note: Children below 3ft is FREE</span>
-      </div>
-
-      <br />
-      <div>
-        <span>Additional Options</span>
-      </div>
-
-      <div style="background-color: #ececec; padding: 20px;">
-        <a-row :gutter="16">
-          <a-col :span="8">
-            <a-card title="Card title" :bordered="false">
-              <p>card content</p>
-            </a-card>
-          </a-col>
-          <a-col :span="8">
-            <a-card title="Card title" :bordered="false">
-              <p>card content</p>
-            </a-card>
-          </a-col>
-          <a-col :span="8">
-            <a-card title="Card title" :bordered="false">
-              <p>card content</p>
-            </a-card>
-          </a-col>
-        </a-row>
-      </div>
-      <br />
-
-      <a-button type="primary" block>Proceed to Payment</a-button>
+      <p>
+        <span>▪️ Note: Children below 3ft is FREE</span>
+        <br />
+        <span>▪️ Zoobic Safari Child (3ft-4ft)</span>
+        <br />
+        <span>▪️ 4ft above is adult rate</span>
+      </p>
     </a-card>
-  </a-form>
+
+    <a-card title="Amenities" style="margin-bottom: 10px">
+      <p>
+        <span>
+          <b>Animal Food Basket (Zoobic Park) : PHP 100</b>
+        </span>
+        <br />
+        <span>
+          <b>Chicken (Tiger Safari Ride) : PHP 200</b>
+        </span>
+        <br />
+        <span>
+          <b>Aeta's Inazal : PHP 449</b>
+        </span>
+      </p>
+
+      <a-row>
+        <a-col :span="8">
+          <span>Animal Food Basket</span>
+        </a-col>
+        <a-col :span="8">
+          <span>
+            <a-input-number v-model="details.amenities.food_basket_qty"></a-input-number>
+          </span>
+        </a-col>
+        <a-col :span="8">
+          <span>PHP {{total_food}}</span>
+        </a-col>
+        <a-col :span="24">
+          <a-divider style="margin: 10px 0"></a-divider>
+        </a-col>
+        <a-col :span="8">
+          <span>Chicken (Tiger Safari Ride)</span>
+        </a-col>
+        <a-col :span="8">
+          <span>
+            <a-input-number v-model="details.amenities.chicken_qty"></a-input-number>
+          </span>
+        </a-col>
+        <a-col :span="8">
+          <span>PHP {{total_chicken}}</span>
+        </a-col>
+        <a-col :span="24">
+          <a-divider style="margin: 10px 0"></a-divider>
+        </a-col>
+        <a-col :span="8">
+          <span>Aeta's Inazal</span>
+        </a-col>
+        <a-col :span="8">
+          <span>
+            <a-input-number v-model="details.amenities.inazal_qty"></a-input-number>
+          </span>
+        </a-col>
+        <a-col :span="8">
+          <span>PHP {{total_inazal}}</span>
+        </a-col>
+      </a-row>
+    </a-card>
+    <p>
+      <b>Total : PHP {{total}}</b>
+    </p>
+    <a-button type="primary" block @click="submit">Proceed to Payment</a-button>
+  </a-card>
 </template>
+
 <script>
 export default {
   data() {
     return {
-      labelCol: {
-        xs: { span: 24 },
-        sm: { span: 5 }
-      },
-      wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 }
-      },
-      value1: 0,
-      value2: 0
+      details: {
+        date_visit: null,
+        ticket: {
+          adult_qty: 0,
+          child_qty: 0
+        },
+        amenities: {
+          food_basket_qty: 0,
+          chicken_qty: 0,
+          inazal_qty: 0
+        }
+      }
     };
-  }
+  },
+  computed: {
+    total_adult() {
+      return parseInt(this.details.ticket.adult_qty) * 486.5;
+    },
+    total_child() {
+      return parseInt(this.details.ticket.child_qty) * 416.5;
+    },
+    total_food() {
+      return parseInt(this.details.amenities.food_basket_qty) * 100;
+    },
+    total_chicken() {
+      return parseInt(this.details.amenities.chicken_qty) * 200;
+    },
+    total_inazal() {
+      return parseInt(this.details.amenities.inazal_qty) * 449;
+    },
+    total() {
+      return (
+        this.total_adult +
+        this.total_child +
+        this.total_food +
+        this.total_chicken +
+        this.total_inazal
+      );
+    }
+  },
+  methods: {
+    submit(){
+      this.$store.commit('SET_DETAILS', this.details)
+      this.$store.commit('SET_SENDER', this.$route.query.sender)
+      this.$router.push('/payment/summary')
+    }
+  },
 };
 </script>
 
