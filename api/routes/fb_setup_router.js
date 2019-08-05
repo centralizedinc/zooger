@@ -119,7 +119,7 @@ function setupPersistentMenu(callback) {
                             },
 
                             {
-                                title: "🐯 Click Zooger",
+                                title: "🐯 Zooger recommends...",
                                 type: "postback",
                                 payload: "LATER"
                             }
