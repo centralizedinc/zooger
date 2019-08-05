@@ -100,7 +100,7 @@ function setupPersistentMenu(callback) {
                         payload: "NO_PROMO"
                     },
                     {
-                        title: "🗺 Explore Zoobic Safari",
+                        title: "🗺 Explore Zoobic",
                         type: "postback",
                         payload: "MAP"
                     },
