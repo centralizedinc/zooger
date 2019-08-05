@@ -169,12 +169,12 @@ export default {
     }
   },
   methods: {
-    submit(){
-      this.$store.commit('SET_DETAILS', this.details)
-      this.$store.commit('SET_SENDER', this.$route.query.sender)
-      this.$router.push('/payment/summary')
+    submit() {
+      this.$store.commit("SET_DETAILS", this.details);
+      this.$store.commit("SET_SENDER", this.$route.query.sender);
+      this.$router.push("/payment/summary");
     }
-  },
+  }
 };
 </script>
 

@@ -1,5 +1,5 @@
 <template>
-  <a-card title="Payment SUmmary">
+  <a-card title="Payment Summary">
     <table>
       <tr>
         <th>Item</th>
@@ -111,35 +111,38 @@ export default {
   },
   methods: {
     submit() {
-      axios.post("https://zoobic-safari.herokuapp.com/facebook/webhook", {
-        entry: [
-          {
-            messaging: [
-              {
-                sender: {
-                  id: this.$store.state.sender
-                },
-                postback: {
-                  payload: "CALLBACK_BUYTIX"
+      axios
+        .post("https://zoobic-safari.herokuapp.com/facebook/webhook", {
+          entry: [
+            {
+              messaging: [
+                {
+                  sender: {
+                    id: this.$store.state.sender
+                  },
+                  postback: {
+                    payload: "CALLBACK_BUYTIX"
+                  }
                 }
-              }
-            ]
-          }
-        ]
-      }).then((result) => {
+              ]
+            }
+          ]
+        })
+        .then(result => {
           MessengerExtensions.requestCloseBrowser(
-                        function success() {
-                            resolve()
-                            // webview closed
-                        },
-                        function error(err) {
-                            reject(err)
-                            // an error occurred
-                        }
-                    );
-      }).catch((err) => {
-          console.log('err :', err);
-      });
+            function success() {
+              console.log("success");
+              // webview closed
+            },
+            function error(err) {
+              console.log(err);
+              // an error occurred
+            }
+          );
+        })
+        .catch(err => {
+          console.log("err :", err);
+        });
     }
   }
 };
