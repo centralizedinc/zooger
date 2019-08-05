@@ -15,11 +15,11 @@
     <a-card title="Tickets" style="margin-bottom: 10px">
       <p>
         <span>
-          <b>Adult Rate : PHP 486.5</b>
+          <b>Adult Rate : PHP 486.50</b>
         </span>
         <br />
         <span>
-          <b>Child Rate : PHP 416.5</b>
+          <b>Child Rate : PHP 416.50</b>
         </span>
         <br />
       </p>
@@ -60,18 +60,18 @@
       </p>
     </a-card>
 
-    <a-card title="Amenities" style="margin-bottom: 10px">
+    <a-card title="Available Meal Deals (Optional Order)" style="margin-bottom: 10px">
       <p>
         <span>
-          <b>Animal Food Basket (Zoobic Park) : PHP 100</b>
+          <b>Animal Food Basket (Zoobic Park) : PHP 100.00</b>
         </span>
         <br />
         <span>
-          <b>Chicken (Tiger Safari Ride) : PHP 200</b>
+          <b>Chicken (Tiger Safari Ride) : PHP 200.00</b>
         </span>
         <br />
         <span>
-          <b>Aeta's Inazal : PHP 449</b>
+          <b>Aeta's Inazal : PHP 449.00</b>
         </span>
       </p>
 
@@ -120,7 +120,7 @@
     <p>
       <b>Total : PHP {{total}}</b>
     </p>
-    <a-button type="primary" block @click="submit">Proceed to Payment</a-button>
+    <a-button type="primary" block @click="submit" style="color: black!important; background-color: orange!important; border-color: orange !important" >Proceed to Payment</a-button>
   </a-card>
 </template>
 
@@ -144,19 +144,19 @@ export default {
   },
   computed: {
     total_adult() {
-      return parseInt(this.details.ticket.adult_qty) * 486.5;
+      return parseInt(this.details.ticket.adult_qty) * 486.50;
     },
     total_child() {
-      return parseInt(this.details.ticket.child_qty) * 416.5;
+      return parseInt(this.details.ticket.child_qty) * 416.50;
     },
     total_food() {
-      return parseInt(this.details.amenities.food_basket_qty) * 100;
+      return parseInt(this.details.amenities.food_basket_qty) * 100.00;
     },
     total_chicken() {
-      return parseInt(this.details.amenities.chicken_qty) * 200;
+      return parseInt(this.details.amenities.chicken_qty) * 200.00;
     },
     total_inazal() {
-      return parseInt(this.details.amenities.inazal_qty) * 449;
+      return parseInt(this.details.amenities.inazal_qty) * 449.00;
     },
     total() {
       return (
@@ -179,4 +179,5 @@ export default {
 </script>
 
 <style>
+
 </style>

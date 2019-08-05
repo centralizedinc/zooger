@@ -22,13 +22,15 @@
         </template>
       </tr>
     </table>
-    <a-button type="primary" block @click="submit">Submit</a-button>
+    <br>
+    <a-button type="primary" block @click="submit" style="color: black!important; background-color: orange!important; border-color: orange !important">Checkout</a-button>
   </a-card>
 </template>
 
 <script>
 import axios from "axios";
 export default {
+  
   created() {
     console.log(this.$store.state.details.ticket);
   },
@@ -38,13 +40,13 @@ export default {
       datas.push(
         {
           description: "Zoobic Safari - Adult",
-          rate: 486.5,
+          rate: 486.50,
           qty: this.$store.state.details.ticket.adult_qty,
           total: this.total_adult
         },
         {
           description: "Zoobic Safari - Child",
-          rate: 416.5,
+          rate: 416.50,
           qty: this.$store.state.details.ticket.child_qty,
           total: this.total_child
         },
@@ -54,19 +56,19 @@ export default {
         },
         {
           description: "Animal Food Basket (Zoobic Park)",
-          rate: 100,
+          rate: 100.00,
           qty: this.$store.state.details.amenities.food_basket_qty,
           total: this.total_food
         },
         {
           description: "Chicken (Tiger Safari Ride)",
-          rate: 200,
+          rate: 200.00,
           qty: this.$store.state.details.amenities.chicken_qty,
           total: this.total_chicken
         },
         {
           description: "Aeta's Inazal",
-          rate: 449,
+          rate: 449.00,
           qty: this.$store.state.details.amenities.inazal_qty,
           total: this.total_inazal
         },
@@ -83,21 +85,21 @@ export default {
       return datas;
     },
     total_adult() {
-      return parseInt(this.$store.state.details.ticket.adult_qty) * 486.5;
+      return parseInt(this.$store.state.details.ticket.adult_qty) * 486.50;
     },
     total_child() {
-      return parseInt(this.$store.state.details.ticket.child_qty) * 416.5;
+      return parseInt(this.$store.state.details.ticket.child_qty) * 416.50;
     },
     total_food() {
       return (
-        parseInt(this.$store.state.details.amenities.food_basket_qty) * 100
+        parseInt(this.$store.state.details.amenities.food_basket_qty) * 100.00
       );
     },
     total_chicken() {
-      return parseInt(this.$store.state.details.amenities.chicken_qty) * 200;
+      return parseInt(this.$store.state.details.amenities.chicken_qty) * 200.00;
     },
     total_inazal() {
-      return parseInt(this.$store.state.details.amenities.inazal_qty) * 449;
+      return parseInt(this.$store.state.details.amenities.inazal_qty) * 449.00;
     },
     total() {
       return (
