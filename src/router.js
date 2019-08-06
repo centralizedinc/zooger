@@ -23,7 +23,7 @@ export default new Router({
   {
     path: '/payment/creditcard',
     name: 'Payment Credit Card',
-    component: () => import('./views/payments/creditcard.vue')
+    component: () => import('./views/payments/CreditCard.vue')
   },
   {
     path: '/about',
