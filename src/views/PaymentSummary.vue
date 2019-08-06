@@ -22,15 +22,19 @@
         </template>
       </tr>
     </table>
-    <br>
-    <a-button type="primary" block @click="submit" style="color: black!important; background-color: orange!important; border-color: orange !important">Checkout</a-button>
+    <br />
+    <a-button
+      type="primary"
+      block
+      @click="submit"
+      style="color: black!important; background-color: orange!important; border-color: orange !important"
+    >Checkout</a-button>
   </a-card>
 </template>
 
 <script>
 import axios from "axios";
 export default {
-  
   created() {
     console.log(this.$store.state.details.ticket);
   },
@@ -40,13 +44,13 @@ export default {
       datas.push(
         {
           description: "Zoobic Safari - Adult",
-          rate: 486.50,
+          rate: 486.5,
           qty: this.$store.state.details.ticket.adult_qty,
           total: this.total_adult
         },
         {
           description: "Zoobic Safari - Child",
-          rate: 416.50,
+          rate: 416.5,
           qty: this.$store.state.details.ticket.child_qty,
           total: this.total_child
         },
@@ -56,19 +60,19 @@ export default {
         },
         {
           description: "Animal Food Basket (Zoobic Park)",
-          rate: 100.00,
+          rate: 100.0,
           qty: this.$store.state.details.amenities.food_basket_qty,
           total: this.total_food
         },
         {
           description: "Chicken (Tiger Safari Ride)",
-          rate: 200.00,
+          rate: 200.0,
           qty: this.$store.state.details.amenities.chicken_qty,
           total: this.total_chicken
         },
         {
           description: "Aeta's Inazal",
-          rate: 449.00,
+          rate: 449.0,
           qty: this.$store.state.details.amenities.inazal_qty,
           total: this.total_inazal
         },
@@ -85,21 +89,21 @@ export default {
       return datas;
     },
     total_adult() {
-      return parseInt(this.$store.state.details.ticket.adult_qty) * 486.50;
+      return parseInt(this.$store.state.details.ticket.adult_qty) * 486.5;
     },
     total_child() {
-      return parseInt(this.$store.state.details.ticket.child_qty) * 416.50;
+      return parseInt(this.$store.state.details.ticket.child_qty) * 416.5;
     },
     total_food() {
       return (
-        parseInt(this.$store.state.details.amenities.food_basket_qty) * 100.00
+        parseInt(this.$store.state.details.amenities.food_basket_qty) * 100.0
       );
     },
     total_chicken() {
-      return parseInt(this.$store.state.details.amenities.chicken_qty) * 200.00;
+      return parseInt(this.$store.state.details.amenities.chicken_qty) * 200.0;
     },
     total_inazal() {
-      return parseInt(this.$store.state.details.amenities.inazal_qty) * 449.00;
+      return parseInt(this.$store.state.details.amenities.inazal_qty) * 449.0;
     },
     total() {
       return (
@@ -138,13 +142,13 @@ export default {
             },
             function error(err) {
               console.log(err);
-              window.close();
               // an error occurred
             }
           );
         })
         .catch(err => {
           console.log("err :", err);
+          window.close();
         });
     }
   }
