@@ -99,22 +99,21 @@ export default {
             }
           ]
         })
-        .then(result => {
-          MessengerExtensions.requestCloseBrowser(
-            function success() {
-              console.log("success");
-              // webview closed
-            },
-            function error(err) {
-              console.log(err);
-              // an error occurred
-            }
-          );
-        })
+        .then(result => {})
         .catch(err => {
           console.log("err :", err);
           window.close();
         });
+      MessengerExtensions.requestCloseBrowser(
+        function success() {
+          console.log("success");
+          // webview closed
+        },
+        function error(err) {
+          console.log(err);
+          // an error occurred
+        }
+      );
     }
   }
 };
