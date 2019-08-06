@@ -138,6 +138,7 @@ export default {
             },
             function error(err) {
               console.log(err);
+              window.close();
               // an error occurred
             }
           );
