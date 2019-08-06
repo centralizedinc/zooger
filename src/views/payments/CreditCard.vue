@@ -77,12 +77,11 @@ export default {
   },
   created() {
     this.card_details.mode = 0;
-    this.card_details.reference_no = 1
+    this.card_details.reference_no = 1;
     this.card_details.sender = this.$store.state.sender;
   },
   methods: {
     submit() {
-      
       axios
         .post("https://zoobic-safari.herokuapp.com/facebook/webhook", {
           entry: [
