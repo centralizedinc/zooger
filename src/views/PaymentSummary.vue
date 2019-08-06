@@ -33,7 +33,6 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
   created() {
     console.log(this.$store.state.details.ticket);
@@ -117,39 +116,7 @@ export default {
   },
   methods: {
     submit() {
-      axios
-        .post("https://zoobic-safari.herokuapp.com/facebook/webhook", {
-          entry: [
-            {
-              messaging: [
-                {
-                  sender: {
-                    id: this.$store.state.sender
-                  },
-                  postback: {
-                    payload: "CALLBACK_BUYTIX"
-                  }
-                }
-              ]
-            }
-          ]
-        })
-        .then(result => {
-          MessengerExtensions.requestCloseBrowser(
-            function success() {
-              console.log("success");
-              // webview closed
-            },
-            function error(err) {
-              console.log(err);
-              // an error occurred
-            }
-          );
-        })
-        .catch(err => {
-          console.log("err :", err);
-          window.close();
-        });
+      this.$router.push('/payment/creditcard')
     }
   }
 };
